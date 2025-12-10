@@ -31,7 +31,6 @@ A complete offline YouTube video summarizer that downloads audio, transcribes it
 ## 🔧 Installation
 
 ### Step 1: Install FFmpeg
-```bash
 # Ubuntu/Debian
 sudo apt update && sudo apt install ffmpeg
 
@@ -44,17 +43,16 @@ choco install ffmpeg
 # Windows (manual)
 # Download from https://ffmpeg.org/download.html and add to PATH
 
-### Step 2: Clone the Repository
-```bash
+---
+
+## Step 2: Clone the Repository
 git clone https://github.com/yourusername/youtube-summarizer.git
 cd youtube-summarizer
 
-### Step 3: Install Python Dependencies
-```bash
+## Step 3: Install Python Dependencies
 pip install yt-dlp openai-whisper transformers torch
 
 ### Step 4: Verify Installation
-```bash
 python verify_setup.py
 
 For full verification including model loading:
@@ -74,7 +72,6 @@ youtube-summarizer/
 ## 🎯 Usage
 
 ### Basic Usage
-```bash
 python main.py https://www.youtube.com/watch?v=VIDEO_ID
 
 Save Output to File
