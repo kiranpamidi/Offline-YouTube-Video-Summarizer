@@ -179,17 +179,17 @@ python main.py https://youtu.be/VIDEO_ID --output downloads/my_video_summary.txt
 Common Issues:
 
 - "FFmpeg not found" error
-# Ubuntu/Debian
+### Ubuntu/Debian
 sudo apt install ffmpeg
 
-# Verify installation
+### Verify installation
 ffmpeg -version
 
 - "CUDA out of memory" error
-# Use smaller model
+### Use smaller model
 python main.py URL --whisper-model base
 
-# Force CPU usage
+### Force CPU usage
 CUDA_VISIBLE_DEVICES="" python main.py URL
 
 - Slow performance
@@ -206,7 +206,7 @@ python -c "import torch; print(torch.cuda.is_available())"
 - Models cache: ~/.cache/whisper/ and ~/.cache/huggingface/
 
 - Text not saved
-# Use --output flag to save
+### Use --output flag to save
 python main.py URL --output summary.txt
 
 
