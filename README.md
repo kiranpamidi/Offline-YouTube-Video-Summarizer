@@ -61,13 +61,13 @@ python verify_setup.py --check-models
 ### Step 5: Project Structure
 
 youtube-summarizer/
-    -- init.py              # Package initialization
-    -- main.py              # Main CLI application
-    -- downloader.py        # YouTube audio downloader
-    -- transcriber.py       # Whisper transcription module
-    -- summarizer.py        # Text summarization module
-    -- verify_setup.py      # Setup verification script
-    -- README.md            # This file
+    -- init.py              # Package initialization \
+    -- main.py              # Main CLI application \
+    -- downloader.py        # YouTube audio downloader \
+    -- transcriber.py       # Whisper transcription module \
+    -- summarizer.py        # Text summarization module \
+    -- verify_setup.py      # Setup verification script \
+    -- README.md            # This file \
     -- downloads/           # Temporary audio storage (created automatically)
 
 
