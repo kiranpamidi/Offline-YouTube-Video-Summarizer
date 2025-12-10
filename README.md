@@ -37,9 +37,6 @@ sudo apt update && sudo apt install ffmpeg
 # macOS
 brew install ffmpeg
 
-# Windows (using Chocolatey)
-choco install ffmpeg
-
 # Windows (manual)
 Download from https://ffmpeg.org/download.html and add to PATH
 
