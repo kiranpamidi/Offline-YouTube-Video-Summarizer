@@ -41,7 +41,7 @@ brew install ffmpeg
 choco install ffmpeg
 
 # Windows (manual)
-# Download from https://ffmpeg.org/download.html and add to PATH
+Download from https://ffmpeg.org/download.html and add to PATH
 
 ---
 
