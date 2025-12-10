@@ -83,12 +83,12 @@ python main.py https://youtube.com/watch?v=VIDEO_ID --output downloads/summary.t
 
 # Advanced Options
 python main.py https://www.youtube.com/watch?v=VIDEO_ID \
-    --whisper-model medium \
-    --summarizer-model facebook/bart-large-cnn \
-    --output summary.txt \
-    --output-dir downloads \
-    --no-cleanup \
-    --verbose
+    - whisper-model medium \
+    - summarizer-model facebook/bart-large-cnn \
+    - output summary.txt \
+    - output-dir downloads \
+    - no-cleanup \
+    - verbose
 ### Command-line Arguments
 | Argument             | Description                                          | Default                 |
 | -------------------- | ---------------------------------------------------- | ----------------------- |
@@ -153,11 +153,11 @@ python main.py https://www.youtube.com/watch?v=VIDEO_ID --output video_summary.t
 
 Example 3: High-Accuracy Processing
 python main.py https://www.youtube.com/watch?v=VIDEO_ID \
-    --whisper-model large \
-    --summarizer-model facebook/bart-large-cnn \
-    --output /path/to/save/summary.txt \
-    --no-cleanup \
-    --verbose
+    - whisper-model large \
+    - summarizer-model facebook/bart-large-cnn \
+    - output /path/to/save/summary.txt \
+    - no-cleanup \
+    - verbose
 
 Example 4: Fast Processing with Output Redirection
 python main.py https://youtu.be/VIDEO_ID --whisper-model tiny > fast_summary.txt
@@ -179,35 +179,34 @@ python main.py https://youtu.be/VIDEO_ID --output downloads/my_video_summary.txt
 
 Common Issues:
 
--"FFmpeg not found" error
+- "FFmpeg not found" error
 # Ubuntu/Debian
 sudo apt install ffmpeg
 
 # Verify installation
 ffmpeg -version
 
--"CUDA out of memory" error
+- "CUDA out of memory" error
 # Use smaller model
 python main.py URL --whisper-model base
 
 # Force CPU usage
 CUDA_VISIBLE_DEVICES="" python main.py URL
 
---Slow performance
-
+- Slow performance
 -Use smaller Whisper models (tiny or base)
 -Check GPU acceleration:
 python -c "import torch; print(torch.cuda.is_available())"
 
---Model download issues
+- Model download issues
 
--First run downloads models automatically (~2-5GB total)
+- First run downloads models automatically (~2-5GB total)
 
--Check internet connection
+- Check internet connection
 
--Models cache: ~/.cache/whisper/ and ~/.cache/huggingface/
+- Models cache: ~/.cache/whisper/ and ~/.cache/huggingface/
 
---Text not saved
+- Text not saved
 # Use --output flag to save
 python main.py URL --output summary.txt
 
