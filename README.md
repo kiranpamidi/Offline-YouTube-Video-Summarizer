@@ -74,13 +74,13 @@ youtube-summarizer \
 python main.py https://www.youtube.com/watch?v=VIDEO_ID
 
 Save Output to File
-# Save to any location
+### Save to any location
 python main.py https://youtube.com/watch?v=VIDEO_ID --output my_summary.txt
 
-# Save specifically to downloads folder
+### Save specifically to downloads folder
 python main.py https://youtube.com/watch?v=VIDEO_ID --output downloads/summary.txt
 
-# Advanced Options
+### Advanced Options
 python main.py https://www.youtube.com/watch?v=VIDEO_ID \
     - whisper-model medium \
     - summarizer-model facebook/bart-large-cnn \
