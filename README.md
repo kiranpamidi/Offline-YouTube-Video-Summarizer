@@ -31,13 +31,13 @@ A complete offline YouTube video summarizer that downloads audio, transcribes it
 ## 🔧 Installation
 
 ### Step 1: Install FFmpeg
-# Ubuntu/Debian
+### Ubuntu/Debian
 sudo apt update && sudo apt install ffmpeg
 
-# macOS
+### macOS
 brew install ffmpeg
 
-# Windows (manual)
+### Windows (manual)
 Download from https://ffmpeg.org/download.html and add to PATH
 
 ---
