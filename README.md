@@ -60,7 +60,7 @@ python verify_setup.py --check-models
 
 ### Step 5: Project Structure
 
-'''youtube-summarizer/
+youtube-summarizer/
 ├── __init__.py          # Package initialization
 ├── main.py              # Main CLI application
 ├── downloader.py        # YouTube audio downloader
@@ -69,7 +69,7 @@ python verify_setup.py --check-models
 ├── verify_setup.py      # Setup verification script
 ├── README.md            # This file
 └── downloads/           # Temporary audio storage (created automatically)
----
+
 
 ## 🎯 Usage
 
