@@ -1,7 +1,7 @@
 YouTube Video Summarizer
 A complete offline YouTube video summarizer that downloads audio, transcribes it using Whisper, and generates summaries using transformer models. No API keys or internet connection required after initial setup.
 
-Features
+🚀 Features
 Complete Offline Processing: All processing happens locally on your machine
 
 High-Quality Transcription: Uses OpenAI's Whisper for accurate speech-to-text
@@ -14,7 +14,7 @@ Automatic Cleanup: Optionally removes temporary audio files after processing
 
 Multiple Model Sizes: Choose balance between speed and accuracy
 
-Requirements
+📋 Prerequisites
 Core Dependencies
 Python 3.8+
 
@@ -29,35 +29,56 @@ transformers - Text summarization models
 
 torch - Deep learning framework
 
-argparse - Command-line interface (standard library)
+🔧 Installation
+Step 1: Install FFmpeg
+bash
+# Ubuntu/Debian
+sudo apt update && sudo apt install ffmpeg
 
-logging - Logging (standard library)
+# macOS
+brew install ffmpeg
 
-Installation
-Install FFmpeg:
+# Windows (using Chocolatey)
+choco install ffmpeg
 
-Ubuntu/Debian: sudo apt install ffmpeg
-
-macOS: brew install ffmpeg
-
-Windows: Download from ffmpeg.org
-
-Install Python packages:
-
+# Windows (manual)
+# Download from https://ffmpeg.org/download.html and add to PATH
+Step 2: Clone the Repository
+bash
+git clone https://github.com/yourusername/youtube-summarizer.git
+cd youtube-summarizer
+Step 3: Install Python Dependencies
 bash
 pip install yt-dlp openai-whisper transformers torch
-Verify installation:
-
+Step 4: Verify Installation
 bash
 python verify_setup.py
 For full verification including model loading:
 
 bash
 python verify_setup.py --check-models
-Usage
+📁 Project Structure
+text
+youtube-summarizer/
+├── init.py              # Package initialization
+├── main.py              # Main CLI application
+├── downloader.py        # YouTube audio downloader
+├── transcriber.py       # Whisper transcription module
+├── summarizer.py        # Text summarization module
+├── verify_setup.py      # Setup verification script
+├── README.md            # This file
+└── downloads/           # Temporary audio storage (created automatically)
+🎯 Usage
 Basic Usage
 bash
 python main.py https://www.youtube.com/watch?v=VIDEO_ID
+Save Output to File
+bash
+# Save to any location
+python main.py https://youtube.com/watch?v=VIDEO_ID --output my_summary.txt
+
+# Save specifically to downloads folder
+python main.py https://youtube.com/watch?v=VIDEO_ID --output downloads/summary.txt
 Advanced Options
 bash
 python main.py https://www.youtube.com/watch?v=VIDEO_ID \
@@ -67,7 +88,7 @@ python main.py https://www.youtube.com/watch?v=VIDEO_ID \
     --output-dir downloads \
     --no-cleanup \
     --verbose
-Command-line Arguments
+⚙️ Command-line Arguments
 Argument	Description	Default
 url	YouTube video URL (required)	-
 --whisper-model	Whisper model size: tiny, base, small, medium, large	base
@@ -77,91 +98,36 @@ url	YouTube video URL (required)	-
 --no-cleanup	Keep downloaded audio files	False
 --transcript-only	Only transcribe, don't summarize	False
 --verbose	Enable verbose logging	False
-Important Storage Notes
-Directory Structure:
-downloads/ directory: Only for temporary audio files (.wav format)
+💾 Storage Information
+Important Notes:
+downloads/ directory: Only stores temporary audio files (.wav format)
 
-Text outputs: NOT automatically saved to downloads/ - must specify output path
+Text outputs: NOT automatically saved to downloads/ - must specify with --output
 
-How to Save Text Outputs:
-Specify Custom Output File (Recommended):
-
-bash
-# Save to any location
-python main.py https://youtube.com/watch?v=VIDEO_ID --output my_summary.txt
-
-# Save specifically to downloads folder
-python main.py https://youtube.com/watch?v=VIDEO_ID --output downloads/summary.txt
-Pipe to File:
-
-bash
-# Redirect terminal output
-python main.py https://youtube.com/watch?v=VIDEO_ID > output.txt
-View Only in Terminal (default):
-
-bash
-# Text is displayed but not saved
-python main.py https://youtube.com/watch?v=VIDEO_ID
 What Gets Saved Where:
 File Type	Storage Location	Notes
 Audio files (.wav)	downloads/ directory	Temporary, auto-cleaned unless --no-cleanup
 Text outputs	User-specified path via --output	Not auto-saved; must specify path
 Transcript	Included in text output	Part of the summary file
 Summary	Included in text output	Part of the summary file
-Project Structure
-text
-.
-├── init.py              # Package initialization
-├── main.py              # Main CLI application
-├── downloader.py        # YouTube audio downloader
-├── transcriber.py       # Whisper transcription module
-├── summarizer.py        # Text summarization module
-├── verify_setup.py      # Setup verification script
-└── downloads/           # Temporary audio storage (created automatically)
-Module Details
-1. YouTubeDownloader (downloader.py)
-Downloads audio from YouTube videos using yt-dlp
+How to Save Text Outputs:
+Specify Custom Output File (Recommended):
 
-Extracts video ID from URLs
+bash
+python main.py https://youtube.com/watch?v=VIDEO_ID --output my_summary.txt
+Pipe to File:
 
-Converts to WAV format using FFmpeg
+bash
+python main.py https://youtube.com/watch?v=VIDEO_ID > output.txt
+View Only in Terminal (default):
 
-Saves audio to downloads/ directory
-
-Optional cleanup of temporary audio files
-
-2. Transcriber (transcriber.py)
-Uses OpenAI Whisper for speech-to-text
-
-Supports multiple model sizes for speed/accuracy trade-off
-
-Automatic GPU detection (CUDA support)
-
-Language detection and forced language options
-
-3. Summarizer (summarizer.py)
-Uses Hugging Face transformers for text summarization
-
-Supports multiple models (BART, T5, etc.)
-
-Handles long texts through chunking
-
-Automatic device selection (CPU/GPU)
-
-4. YouTubeSummarizer (main.py)
-Orchestrates the complete pipeline
-
-Provides CLI interface with argument parsing
-
-Handles errors and cleanup
-
-Manages logging and output formatting
-
-Model Sizes and Performance
-Whisper Models
+bash
+python main.py https://youtube.com/watch?v=VIDEO_ID
+📊 Model Information
+Whisper Models (Transcription)
 Model	Size	Relative Speed	Recommended Use
 tiny	~75 MB	32x	Fast, low-accuracy
-base	~150 MB	16x	Balanced
+base	~150 MB	16x	Balanced (default)
 small	~500 MB	6x	Good accuracy
 medium	~1.5 GB	2x	High accuracy
 large	~3 GB	1x	Best accuracy
@@ -170,14 +136,14 @@ facebook/bart-large-cnn: Recommended default (~1.6GB)
 
 Other models from Hugging Face Model Hub can be used
 
-Examples
-1. Simple transcription only (output to terminal):
+📝 Examples
+Example 1: Simple Transcription Only
 bash
 python main.py https://youtu.be/dQw4w9WgXcQ --transcript-only
-2. Save complete summary to file:
+Example 2: Complete Summary with File Output
 bash
 python main.py https://www.youtube.com/watch?v=VIDEO_ID --output video_summary.txt
-3. High-accuracy processing with custom save location:
+Example 3: High-Accuracy Processing
 bash
 python main.py https://www.youtube.com/watch?v=VIDEO_ID \
     --whisper-model large \
@@ -185,70 +151,68 @@ python main.py https://www.youtube.com/watch?v=VIDEO_ID \
     --output /path/to/save/summary.txt \
     --no-cleanup \
     --verbose
-4. Save to downloads folder specifically:
-bash
-python main.py https://youtu.be/VIDEO_ID --output downloads/my_video_summary.txt
-5. Quick summary (fastest) with output redirection:
+Example 4: Fast Processing with Output Redirection
 bash
 python main.py https://youtu.be/VIDEO_ID --whisper-model tiny > fast_summary.txt
-Error Handling
-The application includes comprehensive error handling:
+Example 5: Save to Downloads Folder
+bash
+python main.py https://youtu.be/VIDEO_ID --output downloads/my_video_summary.txt
+🔍 How It Works
+Download: Extracts audio from YouTube video using yt-dlp
 
-Invalid URLs are detected
+Transcribe: Converts speech to text using Whisper (offline)
 
-Download failures are caught and reported
+Summarize: Generates summary using transformer models (offline)
 
-Model loading errors are handled gracefully
+Output: Displays or saves transcript and summary
 
-Cleanup happens even on failure (unless --no-cleanup)
+🐛 Troubleshooting
+Common Issues:
+"FFmpeg not found" error
 
-Troubleshooting
-"FFmpeg not found" error:
+bash
+# Ubuntu/Debian
+sudo apt install ffmpeg
 
-Install FFmpeg using your package manager
+# Verify installation
+ffmpeg -version
+"CUDA out of memory" error
 
-Add FFmpeg to your system PATH
+bash
+# Use smaller model
+python main.py URL --whisper-model base
 
-"CUDA out of memory" error:
-
-Use smaller models (--whisper-model base or small)
-
-Run on CPU by setting CUDA_VISIBLE_DEVICES=""
-
-Slow performance:
+# Force CPU usage
+CUDA_VISIBLE_DEVICES="" python main.py URL
+Slow performance
 
 Use smaller Whisper models (tiny or base)
 
-Ensure you have GPU acceleration enabled
+Check GPU acceleration: python -c "import torch; print(torch.cuda.is_available())"
 
-Model download issues:
+Model download issues
 
-First run downloads models automatically
+First run downloads models automatically (~2-5GB total)
 
-Check internet connection for initial download
+Check internet connection
 
-Models are cached in ~/.cache/
+Models cache: ~/.cache/whisper/ and ~/.cache/huggingface/
 
-"Text not saved to downloads folder":
+Text not saved
+
+bash
+# Use --output flag to save
+python main.py URL --output summary.txt
+⚠️ Notes & Limitations
+First run downloads models: Whisper (~150MB-3GB) + BART (~1.6GB)
+
+Processing time: 2-10x video length depending on model and hardware
+
+GPU acceleration recommended for faster transcription
 
 Text outputs require explicit --output argument
 
-Use --output downloads/filename.txt to save text to downloads
+Long videos (>30 mins) may require more RAM/VRAM
 
-Notes
-First run will download models (Whisper: ~150MB-3GB, BART: ~1.6GB)
-
-Processing time depends on video length and model size
-
-GPU acceleration significantly improves transcription speed
-
-All processing happens offline after initial model download
-
-Text outputs are not automatically saved - use --output to save them
-
-License
+📄 License
 This project is for educational purposes. Ensure you comply with YouTube's Terms of Service when using this tool.
-
-Disclaimer
-This tool is intended for personal use and educational purposes. Always respect copyright laws and content creators' rights. Download only content you have permission to access.
-
